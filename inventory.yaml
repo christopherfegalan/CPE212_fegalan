@@ -1,0 +1,29 @@
+all:
+  children:
+
+    ubuntu:
+      vars:
+        ansible_user: fegalanvm
+      hosts:
+        server1:
+          ansible_host: 192.168.56.118
+          os_type: Ubuntu
+          apache_package: apache2
+          php_package: libapache2-mod-php
+        server2:
+          ansible_host: 192.168.56.119
+          os_type: Ubuntu
+          apache_package: apache2
+          php_package: libapache2-mod-php
+
+    centos:
+      vars:
+        ansible_user: centos_chris
+      hosts:
+        server3:
+          ansible_host: 192.168.56.117
+          os_type: CentOS
+          apache_package: httpd
+          php_package: php
+
+
