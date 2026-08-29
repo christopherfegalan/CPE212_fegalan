@@ -1,0 +1,18 @@
+all:
+  children:
+
+    ubuntu:
+      vars:
+        ansible_user: user123
+      hosts:
+        server1:
+          ansible_host: 192.168.0.101
+          os_type: Ubuntu
+          apache_package: apache2
+          php_package: libapache2-mod-php
+        server2:
+          ansible_host: 192.168.0.104
+          os_type: Ubuntu
+          apache_package: apache2
+          php_package: libapache2-mod-php
+
