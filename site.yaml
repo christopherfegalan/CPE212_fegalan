@@ -1,22 +1,22 @@
 ---
 
-#- hosts: all
-#  become: true
-#  pre_tasks:
-#
-#  - name: Install Updates (CentOS)
-#    tags: always
-#    dnf:
-#      update_only: yes
-#      update_cache: yes
-#    when: ansible_distribution == "CentOS"
-#
-#  - name: Install Updates (Ubuntu)
-#    tags: always
-#    apt:
-#      upgrade: dist
-#      update_cache: yes
-#    when: ansible_distribution == "Ubuntu"
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: Install Updates (CentOS)
+    tags: always
+    dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+
+  - name: Install Updates (Ubuntu)
+    tags: always
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
 
 - hosts: web_servers
   become: true
@@ -40,6 +40,14 @@
       state: latest
     when: ansible_distribution == "CentOS"
 
+  - name: start httpd (CentOS)
+    tags: apache,centos,httpd
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+    when: ansible_distribution == "CentOS"
+
 - hosts: db_servers
   become: true
   tasks:
@@ -51,10 +59,15 @@
       state: latest
     when: ansible_distribution == "CentOS"
 
+  - name: Reload system daaemon
+    systemd:
+      daemon_reload: yes
+    when: ansible_distribution == "CentOS"
+
   - name: "Mariadb - Restarting/Enabling CentOS"
     service:
       name: mariadb
-      state: restarted
+      state: started
       enabled: true
     when: ansible_distribution == "CentOS"
 
