@@ -25,5 +25,3 @@ all:
           os_type: CentOS
           apache_package: httpd
           php_package: php
-
-

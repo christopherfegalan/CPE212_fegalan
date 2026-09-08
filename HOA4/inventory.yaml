@@ -1,0 +1,15 @@
+all:
+  children:
+    Ubuntus:
+      vars:
+        OpSys: Ubuntu
+      hosts:
+        server1:
+          ansible_host: 192.168.56.103
+        server2:
+          ansible_host: 192.168.56.104
+
+    VMs:
+      children:
+        Ubuntus:
+        CentOSes:
