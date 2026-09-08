@@ -1,0 +1,4 @@
+For reverting commit: (Latest to first Previous)
+git checkout <branch>
+git reset --hard HEAD~1
+git push origin <branch> --force
