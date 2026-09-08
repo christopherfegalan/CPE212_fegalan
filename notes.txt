@@ -6,4 +6,4 @@ git push origin <branch> --force
 For cloning to a different repo:
 git clone <https-url>
 cd <that-repo>
-git remote set-url origin <YOUR_NEW_REPOSITORY_URL>>
+git remote set-url origin <YOUR_NEW_REPOSITORY_URL>
