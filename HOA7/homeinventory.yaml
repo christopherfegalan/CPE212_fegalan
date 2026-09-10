@@ -1,0 +1,18 @@
+all:
+  children:
+    web_servers:
+      hosts:
+        server1:
+          ansible_host: 192.168.0.102
+        server3:
+          ansible_host: 192.168.0.103
+          ansible_user: centos_chris
+    db_servers:
+      hosts:
+        server2:
+          ansible_host: 192.168.0.104
+    file_servers:
+      hosts:
+        server3:
+          ansible_host: 192.168.0.103
+          ansible_user: centos_chris
