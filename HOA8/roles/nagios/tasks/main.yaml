@@ -1,0 +1,13 @@
+---
+- name: Update apt cache before installation
+  apt:
+    update_cache: true
+
+- name: Install Nagios4 and plugins
+  apt:
+    name:
+      - nagios4
+      - nagios-plugins-basic
+      - nagios4-cgi
+    state: present
+
