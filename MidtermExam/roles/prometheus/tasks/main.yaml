@@ -1,0 +1,106 @@
+#- name: Prepare the Server (Ubuntu)
+#  ansible.builtin.apt:
+#    update_cache: yes
+#    state: latest
+#  when: ansible_distribution == "Ubuntu"
+
+
+#- name: Prepare the Server (CentOS)
+#  ansible.builtin.dnf:
+#    update_cache: yes
+#    state: latest
+#  when: ansible_distribution == "CentOS"
+
+- name: Install utilities required for installation (Ubuntu)
+  ansible.builtin.apt:
+    name:
+      - wget
+      - tar
+      - curl
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install utilities required for installation (CentOS)
+  ansible.builtin.dnf:
+    name:
+      - wget
+      - tar
+      - curl
+    state: present
+  when: ansible_distribution == "CentOS"
+
+- name: Create Prometheus Group
+  ansible.builtin.group:
+    name: prometheus
+    state: present
+
+- name: Create Prometheus User
+  user:
+    name: prometheus
+    groups: prometheus
+    append: yes
+
+- name: Create prometheus directories (etc/prometheus)
+  ansible.builtin.file:
+    path: /etc/prometheus
+    state: directory
+
+- name: Create prometheus directories (/var/lib/prometheus)
+  ansible.builtin.file:
+    path: /var/lib/prometheus
+    owner: prometheus
+    group: prometheus
+    mode: '755'
+    state: directory
+
+- name: Download Prometheus
+  ansible.builtin.get_url:
+    url: https://github.com/prometheus/prometheus/releases/download/v2.55.1/prometheus-2.55.1.linux-amd64.tar.gz
+    dest: /tmp
+
+- name: Extract Prometheus
+  ansible.builtin.unarchive:
+    src: /tmp/prometheus-2.55.1.linux-amd64.tar.gz
+    remote_src: yes
+    dest: /tmp
+
+- name: Install Prometheus binaries (Prometheus)
+  ansible.builtin.copy:
+    src: /tmp/prometheus-2.55.1.linux-amd64/prometheus
+    dest: /usr/local/bin/
+    remote_src: yes
+    owner: prometheus
+    group: prometheus
+
+- name: Install Prometheus binaries (promtool)
+  ansible.builtin.copy:
+    src: /tmp/prometheus-2.55.1.linux-amd64/promtool
+    dest: /usr/local/bin/
+    remote_src: yes
+    owner: prometheus
+    group: prometheus
+
+- name: Install the prometheus Configuration Files
+  ansible.builtin.copy:
+    src: /tmp/prometheus-2.55.1.linux-amd64/prometheus.yml
+    dest: /etc/prometheus/
+    remote_src: yes
+    owner: prometheus
+    group: prometheus
+
+- name: Install prometheus console files
+  ansible.builtin.copy:
+    src: /tmp/prometheus-2.55.1.linux-amd64/consoles
+    dest: /etc/prometheus/
+    remote_src: yes
+    owner: prometheus
+    group: prometheus
+
+
+- name: Install prometheus console library files
+  ansible.builtin.copy:
+    src: /tmp/prometheus-2.55.1.linux-amd64/console_libraries
+    dest: /etc/prometheus/
+    remote_src: yes
+    owner: prometheus
+    group: prometheus
