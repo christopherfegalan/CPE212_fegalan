@@ -1,0 +1,22 @@
+---
+- name: Install Kibana
+  ansible.builtin.package:
+    name: kibana
+    state: present
+
+- name: Configure Kibana
+  ansible.builtin.copy:
+    dest: /etc/kibana/kibana.yml
+    owner: root
+    group: kibana
+    mode: "0660"
+    content: |
+      server.host: "0.0.0.0"
+      server.port: 5601
+      elasticsearch.hosts: ["http://127.0.0.1:9200"]
+
+- name: Enable and start Kibana
+  ansible.builtin.service:
+    name: kibana
+    state: restarted
+    enabled: true

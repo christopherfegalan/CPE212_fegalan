@@ -1,0 +1,31 @@
+---
+- name: Install Elasticsearch
+  ansible.builtin.package:
+    name: elasticsearch
+    state: present
+
+- name: Configure Elasticsearch
+  ansible.builtin.copy:
+    dest: /etc/elasticsearch/elasticsearch.yml
+    owner: root
+    group: elasticsearch
+    mode: "0660"
+    content: |
+      path.data: /var/lib/elasticsearch
+      path.logs: /var/log/elasticsearch
+      network.host: 0.0.0.0
+      discovery.type: single-node
+      xpack.security.enabled: false
+
+- name: Elasticsearch User config permissions
+  ansible.builtin.file:
+    path: /etc/elasticsearch
+    owner: elasticsearch
+    group: elasticsearch
+    recurse: true
+
+- name: Enable and start Elasticsearch
+  ansible.builtin.service:
+    name: elasticsearch
+    state: started
+    enabled: true

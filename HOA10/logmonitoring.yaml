@@ -1,0 +1,55 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Create apt keyring directory
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: "0755"
+      when: ansible_os_family == "Debian"
+
+    - name: Download Elastic GPG key
+      ansible.builtin.get_url:
+        url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+        dest: /etc/apt/keyrings/elastic.asc
+        mode: "0644"
+      when: ansible_os_family == "Debian"
+
+    - name: Add Elastic apt repository
+      ansible.builtin.apt_repository:
+        repo: "deb [signed-by=/etc/apt/keyrings/elastic.asc] https://artifacts.elastic.co/packages/8.x/apt stable main"
+        filename: elastic-8.x
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Import Elastic GPG key
+      ansible.builtin.rpm_key:
+        key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Add Elastic yum repository
+      ansible.builtin.yum_repository:
+        name: elastic-8.x
+        description: Elastic repository for 8.x packages
+        baseurl: https://artifacts.elastic.co/packages/8.x/yum
+        gpgcheck: true
+        gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+        enabled: true
+      when: ansible_os_family == "RedHat"
+
+- hosts: elasticsearch
+  become: true
+  roles:
+    - elasticsearch
+
+- hosts: logstash
+  become: true
+  roles:
+    - logstash
+
+- hosts: kibana
+  become: true
+  roles:
+    - kibana
