@@ -24,6 +24,14 @@
     group: elasticsearch
     recurse: true
 
+- name: Limit Elasticsearch memory
+  ansible.builtin.copy:
+    dest: /etc/elasticsearch/jvm.options.d/heap.options
+    mode: "0644"
+    content: |
+      -Xms512m
+      -Xmx512m
+
 - name: Enable and start Elasticsearch
   ansible.builtin.service:
     name: elasticsearch
