@@ -3,13 +3,13 @@
 [![Automation](https://img.shields.io/badge/AUTOMATION-ANSIBLE-EE0000?style=for-the-badge&labelColor=555555)](https://github.com/christopherfegalan/CPE212_fegalan)
 ![Platform](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![Bash](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)
-[![Status](https://img.shields.io/badge/STATUS-IN_PROGRESS-00C853?style=for-the-badge&labelColor=555555)](https://github.com/christopherfegalan/CPE212_fegalan)
 
 # Automating Server Management
-**Hands-on 
+**Hands-on Activity - Linux Administration - Automation - Containerization - System Configuration
 
 This is my personal repository for the course CPE212 - Automating Server Management
 
 It contains every activity i have created within the span of this course. 
 
-
+---
+Repository Directory Structure:
