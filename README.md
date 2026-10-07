@@ -13,3 +13,46 @@ It contains every activity i have created within the span of this course.
 
 ---
 Repository Directory Structure:
+├── HOA10
+│   ├── inventory.yaml
+│   ├── logmonitoring.yaml
+│   └── roles
+├── HOA4
+│   ├── install_apache.yaml
+│   └── inventory.yaml
+├── HOA5
+│   ├── homeinventory.yaml
+│   ├── install_apache5.yaml
+│   └── inventory.yaml
+├── HOA6
+│   ├── homeinventory.yaml
+│   ├── inventory.yaml
+│   ├── roles
+│   ├── site.yaml
+│   └── supp6.yaml
+├── HOA7
+│   ├── files
+│   ├── homeinventory.yaml
+│   ├── roles
+│   ├── site2.yaml
+│   └── site.yaml
+├── HOA8
+│   ├── install_nagios.yaml
+│   ├── inventory.yaml
+│   └── roles
+├── notes.txt
+├── QUIZ7.1
+│   ├── createdirectory.yaml
+│   ├── createsymlink.yaml
+│   ├── deletefile.yaml
+│   ├── deletesymlink.yaml
+│   ├── emptyfile.yaml
+│   ├── filepermissions.yaml
+│   ├── filetime.yaml
+│   ├── homeinventory.yaml
+│   ├── multiplefiles.yaml
+│   ├── ownership.yaml
+│   ├── symbolicpermissions.yaml
+│   └── withcontent.yaml
+└── README.md
+
