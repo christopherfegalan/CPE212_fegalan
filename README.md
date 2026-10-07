@@ -12,6 +12,7 @@ This is my personal repository for the course CPE212 - Automating Server Managem
 It contains every activity i have created within the span of this course. 
 
 ---
+```text
 Repository Directory Structure:
 ├── HOA10
 │   ├── inventory.yaml
@@ -55,4 +56,4 @@ Repository Directory Structure:
 │   ├── symbolicpermissions.yaml
 │   └── withcontent.yaml
 └── README.md
-
+```
