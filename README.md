@@ -5,7 +5,7 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
 # Automating Server Management
-**Hands-on Activity - Linux Administration - Automation - Containerization - System Configuration
+**Hands-on Activity - Linux Administration - Automation - Containerization - System Configuration**
 
 This is my personal repository for the course CPE212 - Automating Server Management
 
