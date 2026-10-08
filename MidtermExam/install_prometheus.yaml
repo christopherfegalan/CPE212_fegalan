@@ -1,7 +1,0 @@
----
-- name: Install Prometheus on Centos and Ubuntu Servers
-  hosts: all
-  become: true
-
-  roles:
-  - prometheus
