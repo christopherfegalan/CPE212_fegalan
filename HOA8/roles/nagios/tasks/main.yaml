@@ -1,13 +1,21 @@
----
-- name: Update apt cache before installation
-  apt:
-    update_cache: true
+- name: Update cache on Ubuntu
+  ansible.builtin.apt:
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu"
 
-- name: Install Nagios4 and plugins
-  apt:
-    name:
-      - nagios4
-      - nagios-plugins-basic
-      - nagios4-cgi
-    state: present
+- name: Update cache on CentOS
+  ansible.builtin.dnf:
+    update_cache: yes
+  when: ansible_distribution == "CentOS"
 
+- name: Download Nagios Core from website (Fixed URL)
+  ansible.builtin.get_url:
+    url: https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.4.14.tar.gz
+    dest: /tmp/nagios-4.4.14.tar.gz
+    mode: '0644'
+
+- name: Extract Nagios Core tarball
+  ansible.builtin.unarchive:
+    src: /tmp/nagios-4.4.14.tar.gz
+    dest: /tmp/
+    remote_src: true
