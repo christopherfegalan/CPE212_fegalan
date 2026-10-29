@@ -1,0 +1,13 @@
+all:
+  children:
+    ubuntu_server:
+      hosts:
+        server1:
+          ansible_host: 192.168.111.4
+
+    centos_server:
+      hosts:
+        server2:
+          ansible_host: 192.168.111.6
+          ansible_user: centos_chris
+
